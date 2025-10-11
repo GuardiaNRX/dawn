@@ -36,11 +36,19 @@
         tabindex="-1"
       >
         {%- if settings.predictive_search_enabled -%}
-          <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
+          <predictive-search
+            class="search-modal__form"
+            data-loading-text="{{ 'accessibility.loading' | t }}"
+          >
         {%- else -%}
           <search-form class="search-modal__form">
         {%- endif -%}
-        <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+        <form
+          action="{{ routes.search_url }}"
+          method="get"
+          role="search"
+          class="search search-modal__form"
+        >
           <div class="field">
             <input
               class="search__input field__input"
@@ -62,7 +70,9 @@
                 spellcheck="false"
               {%- endif -%}
             >
-            <label class="field__label" for="{{ input_id }}">{{ 'general.search.search' | t }}</label>
+            <label class="field__label" for="{{ input_id }}">
+              {{- 'general.search.search' | t -}}
+            </label>
             <input type="hidden" name="options[prefix]" value="last">
             <button
               type="reset"
@@ -73,7 +83,10 @@
                 {{- 'icon-reset.svg' | inline_asset_content -}}
               </span>
             </button>
-            <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+            <button
+              class="search__button field__button"
+              aria-label="{{ 'general.search.search' | t }}"
+            >
               <span class="svg-wrapper">
                 {{- 'icon-search.svg' | inline_asset_content -}}
               </span>
@@ -81,11 +94,19 @@
           </div>
 
           {%- if settings.predictive_search_enabled -%}
-            <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
+            <div
+              class="predictive-search predictive-search--header"
+              tabindex="-1"
+              data-predictive-search
+            >
               {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
             </div>
 
-            <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+            <span
+              class="predictive-search-status visually-hidden"
+              role="status"
+              aria-hidden="true"
+            ></span>
           {%- endif -%}
         </form>
         {%- if settings.predictive_search_enabled -%}

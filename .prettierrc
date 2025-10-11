@@ -1,0 +1,9 @@
+{
+  "plugins": ["@shopify/prettier-plugin-liquid"],
+  "overrides": [
+    {
+      "files": ["*.liquid", "*.json", "*.css"],
+      "options": { "printWidth": 100 }
+    }
+  ]
+}

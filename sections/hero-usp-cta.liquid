@@ -1,0 +1,186 @@
+{% comment %}
+  Hero + USP + CTA (wellness)
+  - czysty layout, mało JS, dostępne alt/aria
+  - ustawienia: nagłówek, podtytuł, przyciski, obraz, tło (jasne/kontrast)
+  - bloki USP (ikona + krótki tekst)
+{% endcomment %}
+<section class="section hero-usp-cta hero-usp-cta--{{ section.settings.tone }}">
+  <div class="page-width">
+    <div class="grid grid--1-col grid--2-col-desktop">
+      <div class="grid__item">
+        <div class="title-wrapper">
+          {% if section.settings.kicker != blank %}
+            <p class="caption-with-letter-spacing">{{ section.settings.kicker }}</p>
+          {% endif %}
+          {% if section.settings.heading != blank %}
+            <h2 class="h1">{{ section.settings.heading }}</h2>
+          {% endif %}
+          {% if section.settings.subheading != blank %}
+            <p class="rte">{{ section.settings.subheading }}</p>
+          {% endif %}
+          <div class="button-group">
+            {% if section.settings.primary_label != blank
+              and section.settings.primary_link != blank
+            %}
+              <a class="button button--primary" href="{{ section.settings.primary_link }}">
+                {{- section.settings.primary_label -}}
+              </a>
+            {% endif %}
+            {% if section.settings.secondary_label != blank
+              and section.settings.secondary_link != blank
+            %}
+              <a class="button" href="{{ section.settings.secondary_link }}">
+                {{- section.settings.secondary_label -}}
+              </a>
+            {% endif %}
+          </div>
+          {% if section.blocks.size > 0 %}
+            <ul class="usp-list" role="list">
+              {% for block in section.blocks %}
+                <li class="usp-list__item" {{ block.shopify_attributes }}>
+                  {% render 'usp-icon', name: block.settings.icon %}
+                  <span class="usp-list__text">{{ block.settings.text }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+      <div class="grid__item">
+        {% if section.settings.image != blank %}
+          <div class="hero-usp-cta__media">
+            {{
+              section.settings.image
+              | image_url: width: 1440
+              | image_tag:
+                loading: 'lazy',
+                widths: '480, 720, 960, 1200, 1440',
+                sizes: '(min-width: 990px) 50vw, 100vw',
+                alt: section.settings.image_alt
+            }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  /* lekkie, sekcyjne style – bez naruszania core Dawn */
+  .hero-usp-cta--light {
+    background: #fafaf8;
+  }
+  .hero-usp-cta--contrast {
+    background: #111;
+    color: #fff;
+  }
+  .hero-usp-cta .button-group {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .usp-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    margin-top: 1.25rem;
+  }
+  .usp-list__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .usp-list__item svg {
+    width: 20px;
+    height: 20px;
+  }
+  .hero-usp-cta__media {
+    margin-top: 1.5rem;
+  }
+  @media (min-width: 990px) {
+    .hero-usp-cta__media {
+      margin-top: 0;
+    }
+  }
+</style>
+{% schema %}
+{
+  "name": "Hero + USP + CTA",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker (mały nadtytuł)",
+      "default": "Natural wellness"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Nagłówek",
+      "default": "Zdrowa żywność, suplementy i superfoods"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Podtytuł",
+      "default": "Czysty skład, szybka dostawa i wsparcie farmaceuty. Zadbaj o siebie bez kompromisów."
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Tło sekcji",
+      "default": "light",
+      "options": [
+        { "value": "light", "label": "Jasne" },
+        { "value": "contrast", "label": "Kontrast (ciemne)" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Główny przycisk – etykieta",
+      "default": "Zobacz bestsellery"
+    },
+    { "type": "url", "id": "primary_link", "label": "Główny przycisk – link" },
+    { "type": "text", "id": "secondary_label", "label": "Drugi przycisk – etykieta" },
+    { "type": "url", "id": "secondary_link", "label": "Drugi przycisk – link" },
+    { "type": "image_picker", "id": "image", "label": "Obraz w hero" },
+    { "type": "text", "id": "image_alt", "label": "Tekst alternatywny obrazu" }
+  ],
+  "blocks": [
+    {
+      "type": "usp",
+      "name": "USP (ikona + tekst)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ikona",
+          "default": "shipping",
+          "options": [
+            { "value": "shipping", "label": "Szybka dostawa" },
+            { "value": "secure", "label": "Bezpieczne płatności" },
+            { "value": "return", "label": "Zwrot 14 dni" },
+            { "value": "support", "label": "Wsparcie farmaceuty" }
+          ]
+        },
+        { "type": "text", "id": "text", "label": "Tekst", "default": "Dostawa 24–48 h" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Hero + USP + CTA (wellness)",
+      "blocks": [
+        { "type": "usp", "settings": { "icon": "shipping", "text": "Dostawa 24–48 h" } },
+        { "type": "usp", "settings": { "icon": "secure", "text": "Bezpieczne płatności" } },
+        { "type": "usp", "settings": { "icon": "return", "text": "Zwrot 14 dni" } },
+        { "type": "usp", "settings": { "icon": "support", "text": "Wsparcie farmaceuty" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

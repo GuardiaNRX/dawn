@@ -2,9 +2,42 @@
 ######################
 .DS_Store
 .DS_Store?
+Desktop.ini
 ._*
 .Spotlight-V100
 .Trashes
 ehthumbs.db
 Thumbs.db
 .shopify
+# IDEs and editors #
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.code-workspace
+.history/
+*.swp
+
+#Node modules 
+node_modules/
+.npm/
+.pnpm-store/
+.yarn/
+.yarn/*
+
+# maps
+*.map
+
+# secrets and env files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*secret*
+*SECRET*
+
+# ruby
+.bundle/
+vendor/bundle/

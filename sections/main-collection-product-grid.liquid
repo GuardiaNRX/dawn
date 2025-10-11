@@ -86,7 +86,9 @@
                 {%- else -%}
                   {{
                     'products.facets.product_count'
-                    | t: product_count: collection.products_count, count: collection.all_products_count
+                    | t:
+                      product_count: collection.products_count,
+                      count: collection.all_products_count
                   }}
                 {%- endif -%}
               </span>
@@ -125,7 +127,11 @@
         {% endif %}
       >
         {%- if collection.products.size == 0 -%}
-          <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
+          <div
+            class="collection collection--empty page-width"
+            id="product-grid"
+            data-id="{{ section.id }}"
+          >
             <div class="loading-overlay gradient"></div>
             <div class="title-wrapper center">
               <h2 class="title title--primary">
@@ -233,7 +239,7 @@
           "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__2.label"
         }
       ]
-    },    
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",

@@ -1,5 +1,7 @@
 {% comment %}theme-check-disable UndefinedObject{% endcomment %}
-{%- assign pick_up_availabilities = product_variant.store_availabilities | where: 'pick_up_enabled', true -%}
+{%- assign pick_up_availabilities = product_variant.store_availabilities
+  | where: 'pick_up_enabled', true
+-%}
 
 {%- if pick_up_availabilities.size > 0 -%}
   <pickup-availability-preview class="pickup-availability-preview">
@@ -60,7 +62,11 @@
       <h2 class="h3 pickup-availability-drawer-title" id="PickupAvailabilityHeading">
         {{ product_variant.product.title | escape }}
       </h2>
-      <button class="pickup-availability-drawer-button" type="button" aria-label="{{ 'accessibility.close' | t }}">
+      <button
+        class="pickup-availability-drawer-button"
+        type="button"
+        aria-label="{{ 'accessibility.close' | t }}"
+      >
         {{- 'icon-close.svg' | inline_asset_content -}}
       </button>
     </div>
@@ -79,7 +85,11 @@
       </p>
     {%- endunless -%}
 
-    <ul class="pickup-availability-list list-unstyled" role="list" data-store-availability-drawer-content>
+    <ul
+      class="pickup-availability-list list-unstyled"
+      role="list"
+      data-store-availability-drawer-content
+    >
       {%- for availability in pick_up_availabilities -%}
         <li class="pickup-availability-list__item">
           <h3 class="h4">{{ availability.location.name | escape }}</h3>

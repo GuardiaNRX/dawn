@@ -16,7 +16,10 @@
         {{- 'icon-close.svg' | inline_asset_content -}}
       </span>
     </summary>
-    <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-{{ section.settings.menu_color_scheme }}">
+    <div
+      id="menu-drawer"
+      class="gradient menu-drawer motion-reduce color-{{ section.settings.menu_color_scheme }}"
+    >
       <div class="menu-drawer__inner-container">
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
@@ -43,7 +46,10 @@
                         tabindex="-1"
                       >
                         <div class="menu-drawer__inner-submenu">
-                          <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                          <button
+                            class="menu-drawer__close-button link link--text focus-inset"
+                            aria-expanded="true"
+                          >
                             <span class="svg-wrapper">
                               {{- 'icon-arrow.svg' | inline_asset_content -}}
                             </span>
@@ -168,9 +174,14 @@
             {%- endif -%}
             {%- if localization.available_countries or localization.available_languages -%}
               <div class="menu-drawer__localization header-localization">
-                {%- if localization.available_countries and localization.available_countries.size > 1 -%}
+                {%- if localization.available_countries
+                  and localization.available_countries.size > 1
+                -%}
                   <localization-form>
-                    {%- form 'localization', id: 'HeaderCountryMobileForm', class: 'localization-form' -%}
+                    {%- form 'localization',
+                      id: 'HeaderCountryMobileForm',
+                      class: 'localization-form'
+                    -%}
                       <div>
                         <h2 class="visually-hidden" id="HeaderCountryMobileLabel">
                           {{ 'localization.country_label' | t }}
@@ -181,14 +192,21 @@
                   </localization-form>
                 {% endif %}
 
-                {%- if localization.available_languages and localization.available_languages.size > 1 -%}
+                {%- if localization.available_languages
+                  and localization.available_languages.size > 1
+                -%}
                   <localization-form>
-                    {%- form 'localization', id: 'HeaderLanguageMobileForm', class: 'localization-form' -%}
+                    {%- form 'localization',
+                      id: 'HeaderLanguageMobileForm',
+                      class: 'localization-form'
+                    -%}
                       <div>
                         <h2 class="visually-hidden" id="HeaderLanguageMobileLabel">
                           {{ 'localization.language_label' | t }}
                         </h2>
-                        {%- render 'language-localization', localPosition: 'HeaderLanguageMobile' -%}
+                        {%- render 'language-localization',
+                          localPosition: 'HeaderLanguageMobile'
+                        -%}
                       </div>
                     {%- endform -%}
                   </localization-form>

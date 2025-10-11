@@ -153,7 +153,9 @@
     {%- render 'loading-spinner' -%}
     {% comment %} TODO: enable theme-check once `line_items_for` is accepted as valid filter {% endcomment %}
     {% # theme-check-disable %}
-    <span class="price">{{ cart | line_items_for: item | sum: 'original_line_price' | money }}</span>
+    <span class="price">
+      {{- cart | line_items_for: item | sum: 'original_line_price' | money -}}
+    </span>
     {% # theme-check-enable %}
   </td>
 
@@ -215,22 +217,33 @@
               id="quantity-popover-info-{{ variant.id }}"
             >
               {%- if has_qty_rules == false -%}
-                <span class="volume-pricing-label caption">{{ 'products.product.volume_pricing.title' | t }}</span>
+                <span class="volume-pricing-label caption">
+                  {{- 'products.product.volume_pricing.title' | t -}}
+                </span>
               {%- endif -%}
               <div class="quantity__rules caption no-js-hidden">
                 {%- if variant.quantity_rule.increment > 1 -%}
                   <span class="divider">
-                    {{- 'products.product.quantity.multiples_of' | t: quantity: variant.quantity_rule.increment -}}
+                    {{-
+                      'products.product.quantity.multiples_of'
+                      | t: quantity: variant.quantity_rule.increment
+                    -}}
                   </span>
                 {%- endif -%}
                 {%- if variant.quantity_rule.min > 1 -%}
                   <span class="divider">
-                    {{- 'products.product.quantity.min_of' | t: quantity: variant.quantity_rule.min -}}
+                    {{-
+                      'products.product.quantity.min_of'
+                      | t: quantity: variant.quantity_rule.min
+                    -}}
                   </span>
                 {%- endif -%}
                 {%- if variant.quantity_rule.max != null -%}
                   <span class="divider">
-                    {{- 'products.product.quantity.max_of' | t: quantity: variant.quantity_rule.max -}}
+                    {{-
+                      'products.product.quantity.max_of'
+                      | t: quantity: variant.quantity_rule.max
+                    -}}
                   </span>
                 {%- endif -%}
               </div>
@@ -415,14 +428,20 @@
     {%- render 'loading-spinner' -%}
     {% comment %} TODO: enable theme-check once `line_items_for` is accepted as valid filter {% endcomment %}
     {% # theme-check-disable %}
-    <span class="price">{{ cart | line_items_for: item | sum: 'original_line_price' | money }}</span>
+    <span class="price">
+      {{- cart | line_items_for: item | sum: 'original_line_price' | money -}}
+    </span>
     {% # theme-check-enable %}
   </td>
 </tr>
 <tr class="small-hide medium-hide hidden desktop-row-error">
   <td></td>
   <td>
-    <div class="variant-item__error" id="Quick-order-list-item-error-desktop-{{ variant.id }}" role="alert">
+    <div
+      class="variant-item__error"
+      id="Quick-order-list-item-error-desktop-{{ variant.id }}"
+      role="alert"
+    >
       <small class="variant-item__error-text"></small>
       <span class="svg-wrapper">{{ 'icon-error.svg' | inline_asset_content }}</span>
     </div>

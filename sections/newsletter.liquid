@@ -91,7 +91,10 @@
                   </button>
                 </div>
                 {%- if form.errors -%}
-                  <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
+                  <small
+                    class="newsletter-form__message form__message"
+                    id="Newsletter-error--{{ section.id }}"
+                  >
                     <span class="svg-wrapper">
                       {{- 'icon-error.svg' | inline_asset_content -}}
                     </span>

@@ -100,15 +100,25 @@
                   spellcheck="false"
                 {%- endif -%}
               >
-              <label class="field__label" for="Search-In-Template">{{ 'general.search.search' | t }}</label>
+              <label class="field__label" for="Search-In-Template">
+                {{- 'general.search.search' | t -}}
+              </label>
               <input name="options[prefix]" type="hidden" value="last">
 
               {%- if settings.predictive_search_enabled -%}
-                <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
+                <div
+                  class="predictive-search predictive-search--search-template"
+                  tabindex="-1"
+                  data-predictive-search
+                >
                   {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
                 </div>
 
-                <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+                <span
+                  class="predictive-search-status visually-hidden"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
               {%- endif -%}
 
               <button
@@ -120,7 +130,11 @@
                   {{- 'icon-reset.svg' | inline_asset_content -}}
                 </span>
               </button>
-              <button type="submit" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+              <button
+                type="submit"
+                class="search__button field__button"
+                aria-label="{{ 'general.search.search' | t }}"
+              >
                 <span class="svg-wrapper">
                   {{- 'icon-search.svg' | inline_asset_content -}}
                 </span>
@@ -136,7 +150,10 @@
         {%- unless section.settings.enable_filtering or section.settings.enable_sorting -%}
           {%- if search.results_count > 0 -%}
             <p role="status">
-              {{ 'templates.search.results_with_count_and_term' | t: terms: search.terms, count: search.results_count }}
+              {{
+                'templates.search.results_with_count_and_term'
+                | t: terms: search.terms, count: search.results_count
+              }}
             </p>
           {%- endif -%}
         {%- endunless -%}
@@ -187,7 +204,10 @@
               <h2 class="product-count__text text-body">
                 <span id="ProductCountDesktop">
                   {%- if search.results_count -%}
-                    {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+                    {{
+                      'templates.search.results_with_count'
+                      | t: terms: search.terms, count: search.results_count
+                    }}
                   {%- elsif search.products_count == search.all_products_count -%}
                     {{ 'products.facets.product_count_simple' | t: count: search.products_count }}
                   {%- else -%}
@@ -363,7 +383,7 @@
           "label": "t:sections.main-search.settings.columns_mobile.options__2.label"
         }
       ]
-    },    
+    },
     {
       "type": "header",
       "content": "t:sections.main-search.settings.header__1.content"

@@ -56,7 +56,10 @@
           </div>
           {%- if settings.cart_drawer_collection != blank -%}
             <div class="cart-drawer__collection">
-              {% render 'card-collection', card_collection: settings.cart_drawer_collection, columns: 1 %}
+              {% render 'card-collection',
+                card_collection: settings.cart_drawer_collection,
+                columns: 1
+              %}
             </div>
           {%- endif -%}
         </div>
@@ -92,7 +95,9 @@
                   <thead role="rowgroup">
                     <tr role="row">
                       <th id="CartDrawer-ColumnProductImage" role="columnheader">
-                        <span class="visually-hidden">{{ 'sections.cart.headings.image' | t }}</span>
+                        <span class="visually-hidden">
+                          {{- 'sections.cart.headings.image' | t -}}
+                        </span>
                       </th>
                       <th
                         id="CartDrawer-ColumnProduct"
@@ -111,7 +116,9 @@
                         {{ 'sections.cart.headings.total' | t }}
                       </th>
                       <th id="CartDrawer-ColumnQuantity" role="columnheader">
-                        <span class="visually-hidden">{{ 'sections.cart.headings.quantity' | t }}</span>
+                        <span class="visually-hidden">
+                          {{- 'sections.cart.headings.quantity' | t -}}
+                        </span>
                       </th>
                     </tr>
                   </thead>
@@ -133,7 +140,13 @@
                         >
                           {% if item.image %}
                             {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
-                            <a href="{{ item.url }}" class="cart-item__link" tabindex="-1" aria-hidden="true"> </a>
+                            <a
+                              href="{{ item.url }}"
+                              class="cart-item__link"
+                              tabindex="-1"
+                              aria-hidden="true"
+                            >
+                            </a>
                             <img
                               class="cart-item__image"
                               src="{{ item.image | image_url: width: 300 }}"
@@ -145,9 +158,15 @@
                           {% endif %}
                         </td>
 
-                        <td class="cart-item__details" role="cell" headers="CartDrawer-ColumnProduct">
+                        <td
+                          class="cart-item__details"
+                          role="cell"
+                          headers="CartDrawer-ColumnProduct"
+                        >
                           {%- if settings.show_vendor -%}
-                            <p class="caption-with-letter-spacing light">{{ item.product.vendor }}</p>
+                            <p class="caption-with-letter-spacing light">
+                              {{ item.product.vendor }}
+                            </p>
                           {%- endif -%}
 
                           <a href="{{ item.url }}" class="cart-item__name h4 break">
@@ -216,7 +235,9 @@
                               {%- endfor -%}
                             </dl>
 
-                            <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                            <p class="product-option">
+                              {{ item.selling_plan_allocation.selling_plan.name }}
+                            </p>
                           {%- endif -%}
 
                           <ul
@@ -233,7 +254,11 @@
                           </ul>
                         </td>
 
-                        <td class="cart-item__totals right" role="cell" headers="CartDrawer-ColumnTotal">
+                        <td
+                          class="cart-item__totals right"
+                          role="cell"
+                          headers="CartDrawer-ColumnTotal"
+                        >
                           {%- render 'loading-spinner' -%}
                           <div class="cart-item__price-wrapper">
                             {%- if item.original_line_price != item.final_line_price -%}
@@ -258,7 +283,10 @@
                             {%- endif -%}
 
                             {%- if item.variant.available and item.unit_price_measurement -%}
-                              {% render 'unit-price', price: item.unit_price, measurement: item.unit_price_measurement %}
+                              {% render 'unit-price',
+                                price: item.unit_price,
+                                measurement: item.unit_price_measurement
+                              %}
                             {%- endif -%}
                           </div>
                         </td>
@@ -286,7 +314,9 @@
                                     class="quantity__button"
                                     name="minus"
                                     type="button"
-                                    {% if item.instructions and item.instructions.can_update_quantity == false %}
+                                    {% if item.instructions
+                                      and item.instructions.can_update_quantity == false
+                                    %}
                                       disabled
                                     {% endif %}
                                   >
@@ -319,7 +349,9 @@
                                     aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
                                     id="Drawer-quantity-{{ item.index | plus: 1 }}"
                                     data-index="{{ item.index | plus: 1 }}"
-                                    {% if item.instructions and item.instructions.can_update_quantity == false %}
+                                    {% if item.instructions
+                                      and item.instructions.can_update_quantity == false
+                                    %}
                                       disabled
                                     {% endif %}
                                   >
@@ -327,7 +359,9 @@
                                     class="quantity__button"
                                     name="plus"
                                     type="button"
-                                    {% if item.instructions and item.instructions.can_update_quantity == false %}
+                                    {% if item.instructions
+                                      and item.instructions.can_update_quantity == false
+                                    %}
                                       disabled
                                     {% endif %}
                                   >
@@ -353,7 +387,9 @@
                                   class="button button--tertiary cart-remove-button"
                                   aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
                                   data-variant-id="{{ item.variant.id }}"
-                                  {% if item.instructions and item.instructions.can_remove == false %}
+                                  {% if item.instructions
+                                    and item.instructions.can_remove == false
+                                  %}
                                     class="hidden"
                                   {% endif %}
                                 >
@@ -432,7 +468,9 @@
                                     <ul class="list-unstyled">
                                       <li>
                                         <span>{{ item.variant.quantity_rule.min }}+</span>
-                                        <span>{{ item.variant.price | money_with_currency }}/ea</span>
+                                        <span>
+                                          {{- item.variant.price | money_with_currency }}/ea</span
+                                        >
                                       </li>
                                       {%- for price_break in item.variant.quantity_price_breaks -%}
                                         <li>
@@ -440,7 +478,9 @@
                                             {{- price_break.minimum_quantity -}}
                                             <span aria-hidden="true">+</span></span
                                           >
-                                          <span>{{ price_break.price | money_with_currency }}/ea</span>
+                                          <span>
+                                            {{- price_break.price | money_with_currency }}/ea</span
+                                          >
                                         </li>
                                       {%- endfor -%}
                                     </ul>
@@ -467,7 +507,12 @@
               </div>
             {%- endif -%}
             <p id="CartDrawer-LiveRegionText" class="visually-hidden" role="status"></p>
-            <p id="CartDrawer-LineItemStatus" class="visually-hidden" aria-hidden="true" role="status">
+            <p
+              id="CartDrawer-LineItemStatus"
+              class="visually-hidden"
+              aria-hidden="true"
+              role="status"
+            >
               {{ 'accessibility.loading' | t }}
             </p>
           </div>
@@ -484,7 +529,9 @@
               </span>
             </summary>
             <cart-note class="cart__note field">
-              <label class="visually-hidden" for="CartDrawer-Note">{{ 'sections.cart.note' | t }}</label>
+              <label class="visually-hidden" for="CartDrawer-Note">
+                {{- 'sections.cart.note' | t -}}
+              </label>
               <textarea
                 id="CartDrawer-Note"
                 class="text-area text-area--resize-vertical field__input"
@@ -501,7 +548,11 @@
         <div class="cart-drawer__footer" {{ block.shopify_attributes }}>
           <div>
             {%- if cart.cart_level_discount_applications.size > 0 -%}
-              <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+              <ul
+                class="discounts list-unstyled"
+                role="list"
+                aria-label="{{ 'customer.order.discount' | t }}"
+              >
                 {%- for discount in cart.cart_level_discount_applications -%}
                   <li class="discounts__discount discounts__discount--end">
                     {{- 'icon-discount.svg' | inline_asset_content -}}
@@ -521,7 +572,10 @@
           <small class="tax-note caption-large rte">
             {%- if cart.duties_included and cart.taxes_included -%}
               {%- if shop.shipping_policy.body == blank -%}
-                {{ 'sections.cart.duties_and_taxes_included_shipping_at_checkout_without_policy' | t }}
+                {{
+                  'sections.cart.duties_and_taxes_included_shipping_at_checkout_without_policy'
+                  | t
+                }}
               {%- else -%}
                 {{
                   'sections.cart.duties_and_taxes_included_shipping_at_checkout_with_policy_html'
@@ -539,7 +593,10 @@
               {%- endif -%}
             {%- elsif cart.duties_included and cart.taxes_included == false -%}
               {%- if shop.shipping_policy.body == blank -%}
-                {{ 'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+                {{
+                  'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_without_policy'
+                  | t
+                }}
               {%- else -%}
                 {{
                   'sections.cart.duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html'

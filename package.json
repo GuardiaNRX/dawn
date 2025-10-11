@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "@shopify/prettier-plugin-liquid": "^1.4.0"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "theme:dev": "shopify theme dev",
+    "theme:push": "shopify theme push --unpublished",
+    "theme:check": "shopify theme check"
+  }
+}

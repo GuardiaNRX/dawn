@@ -110,7 +110,9 @@
                 <article id="{{ comment.id }}" class="article-template__comments-comment">
                   {{ comment.content }}
                   <footer class="right">
-                    <span class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span>
+                    <span class="circle-divider caption-with-letter-spacing">
+                      {{- comment.author -}}
+                    </span>
                   </footer>
                 </article>
               {%- endif -%}
@@ -119,7 +121,8 @@
                 <article id="{{ comment.id }}" class="article-template__comments-comment">
                   {{ comment.content }}
                   <footer class="right">
-                    <span class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span
+                    <span class="circle-divider caption-with-letter-spacing">
+                      {{- comment.author -}}</span
                     ><span class="caption-with-letter-spacing">
                       {{- comment.created_at | time_tag: format: 'date' -}}
                     </span>
@@ -279,7 +282,9 @@
             {%- endif -%}
           </div>
           {%- if blog.moderated? -%}
-            <p class="article-template__comment-warning caption">{{ 'blogs.article.moderated' | t }}</p>
+            <p class="article-template__comment-warning caption">
+              {{ 'blogs.article.moderated' | t }}
+            </p>
           {%- endif -%}
           <input type="submit" class="button" value="{{ 'blogs.article.post' | t }}">
         {% endform %}

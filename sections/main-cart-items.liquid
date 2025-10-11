@@ -48,7 +48,12 @@
       {%- endif -%}
     </div>
 
-    <form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
+    <form
+      action="{{ routes.cart_url }}"
+      class="cart__contents critical-hidden"
+      method="post"
+      id="cart"
+    >
       <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
         <div class="js-contents">
           {%- if cart != empty -%}
@@ -61,7 +66,11 @@
                   <th class="caption-with-letter-spacing" colspan="2" scope="col">
                     {{ 'sections.cart.headings.product' | t }}
                   </th>
-                  <th class="medium-hide large-up-hide right caption-with-letter-spacing" colspan="1" scope="col">
+                  <th
+                    class="medium-hide large-up-hide right caption-with-letter-spacing"
+                    colspan="1"
+                    scope="col"
+                  >
                     {{ 'sections.cart.headings.total' | t }}
                   </th>
                   <th
@@ -89,7 +98,13 @@
                     <td class="cart-item__media">
                       {% if item.image %}
                         {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
-                        <a href="{{ item.url }}" class="cart-item__link" aria-hidden="true" tabindex="-1"> </a>
+                        <a
+                          href="{{ item.url }}"
+                          class="cart-item__link"
+                          aria-hidden="true"
+                          tabindex="-1"
+                        >
+                        </a>
                         <div class="cart-item__image-container gradient {% if item.parent_relationship.parent == null %}global-media-settings{% endif %}">
                           <img
                             src="{{ item.image | image_url: width: 300 }}"
@@ -108,7 +123,9 @@
                         <p class="caption-with-letter-spacing">{{ item.product.vendor }}</p>
                       {%- endif -%}
 
-                      <a href="{{ item.url }}" class="cart-item__name h4 break">{{ item.product.title | escape }}</a>
+                      <a href="{{ item.url }}" class="cart-item__name h4 break">
+                        {{- item.product.title | escape -}}
+                      </a>
 
                       {%- if item.original_price != item.final_price -%}
                         <div class="cart-item__discounted-prices">
@@ -164,10 +181,16 @@
                           {%- endfor -%}
                         </dl>
 
-                        <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                        <p class="product-option">
+                          {{ item.selling_plan_allocation.selling_plan.name }}
+                        </p>
                       {%- endif -%}
 
-                      <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+                      <ul
+                        class="discounts list-unstyled"
+                        role="list"
+                        aria-label="{{ 'customer.order.discount' | t }}"
+                      >
                         {%- for discount in item.line_level_discount_allocations -%}
                           <li class="discounts__discount">
                             {{- 'icon-discount.svg' | inline_asset_content -}}
@@ -204,7 +227,10 @@
                         {%- endif -%}
 
                         {%- if item.variant.available and item.unit_price_measurement -%}
-                          {% render 'unit-price', price: item.unit_price, measurement: item.unit_price_measurement %}
+                          {% render 'unit-price',
+                            price: item.unit_price,
+                            measurement: item.unit_price_measurement
+                          %}
                         {%- endif -%}
                       </div>
                     </td>
@@ -236,7 +262,9 @@
                               </button>
                             {%- endif -%}
                             <quantity-input class="quantity cart-quantity">
-                              {% assign can_update_quantity = item.instructions.can_update_quantity | default: true %}
+                              {% assign can_update_quantity = item.instructions.can_update_quantity
+                                | default: true
+                              %}
                               <button
                                 class="quantity__button"
                                 name="minus"
@@ -246,7 +274,11 @@
                                 {% endif %}
                               >
                                 <span class="visually-hidden">
-                                  {{- 'products.product.quantity.decrease' | t: product: item.product.title | escape -}}
+                                  {{-
+                                    'products.product.quantity.decrease'
+                                    | t: product: item.product.title
+                                    | escape
+                                  -}}
                                 </span>
                                 <span class="svg-wrapper">
                                   {{- 'icon-minus.svg' | inline_asset_content -}}
@@ -283,7 +315,11 @@
                                 {% endif %}
                               >
                                 <span class="visually-hidden">
-                                  {{- 'products.product.quantity.increase' | t: product: item.product.title | escape -}}
+                                  {{-
+                                    'products.product.quantity.increase'
+                                    | t: product: item.product.title
+                                    | escape
+                                  -}}
                                 </span>
                                 <span class="svg-wrapper">
                                   {{- 'icon-plus.svg' | inline_asset_content -}}
@@ -378,7 +414,9 @@
                                   <li>
                                     <span>{{ item.variant.quantity_rule.min }}+</span>
                                     {%- assign price = item.variant.price | money_with_currency -%}
-                                    <span> {{ 'sections.quick_order_list.each' | t: money: price }}</span>
+                                    <span>
+                                      {{ 'sections.quick_order_list.each' | t: money: price -}}
+                                    </span>
                                   </li>
                                   {%- for price_break in item.variant.quantity_price_breaks -%}
                                     <li>
@@ -387,7 +425,9 @@
                                         <span aria-hidden="true">+</span></span
                                       >
                                       {%- assign price = price_break.price | money_with_currency -%}
-                                      <span> {{ 'sections.quick_order_list.each' | t: money: price }}</span>
+                                      <span>
+                                        {{ 'sections.quick_order_list.each' | t: money: price -}}
+                                      </span>
                                     </li>
                                   {%- endfor -%}
                                 </ul>
@@ -395,7 +435,11 @@
                             {%- endif -%}
                           </div>
                         {%- endif -%}
-                        <div class="cart-item__error" id="Line-item-error-{{ item.index | plus: 1 }}" role="alert">
+                        <div
+                          class="cart-item__error"
+                          id="Line-item-error-{{ item.index | plus: 1 }}"
+                          role="alert"
+                        >
                           <small class="cart-item__error-text"></small>
                           <span class="svg-wrapper">
                             {{- 'icon-error.svg' | inline_asset_content -}}
@@ -431,7 +475,10 @@
                         {%- endif -%}
 
                         {%- if item.variant.available and item.unit_price_measurement -%}
-                          {% render 'unit-price', price: item.unit_price, measurement: item.unit_price_measurement %}
+                          {% render 'unit-price',
+                            price: item.unit_price,
+                            measurement: item.unit_price_measurement
+                          %}
                         {%- endif -%}
                       </div>
                     </td>

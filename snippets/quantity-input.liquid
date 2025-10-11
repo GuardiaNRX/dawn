@@ -11,7 +11,12 @@
 {% endcomment %}
 
 <quantity-input class="quantity cart-quantity">
-  <button class="quantity__button" name="minus" type="button" data-target="decrement-{{ variant.id }}">
+  <button
+    class="quantity__button"
+    name="minus"
+    type="button"
+    data-target="decrement-{{ variant.id }}"
+  >
     <span class="visually-hidden">
       {{- 'products.product.quantity.decrease' | t: product: variant.title | escape -}}
     </span>
@@ -37,7 +42,12 @@
     data-index="{{ variant.id }}"
     data-target="quantity-input-{{ variant.id }}"
   >
-  <button class="quantity__button" name="plus" type="button" data-target="increment-{{ variant.id }}">
+  <button
+    class="quantity__button"
+    name="plus"
+    type="button"
+    data-target="increment-{{ variant.id }}"
+  >
     <span class="visually-hidden">
       {{- 'products.product.quantity.increase' | t: product: variant.title | escape -}}
     </span>

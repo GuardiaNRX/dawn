@@ -132,7 +132,9 @@
               >
                 {{- 'products.product.sold_out' | t -}}
               </span>
-            {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+            {%- elsif card_product.compare_at_price > card_product.price
+              and card_product.available
+            -%}
               <span
                 id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                 class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
@@ -204,7 +206,11 @@
               </p>
             {%- endif -%}
 
-            {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+            {% render 'price',
+              product: card_product,
+              price_class: '',
+              show_compare_at_price: true
+            %}
             {%- if card_product.quantity_price_breaks_configured? -%}
               {% if card_product.variants_count == 1 and quick_add == 'bulk' %}
                 {% liquid
@@ -237,17 +243,26 @@
                     <div class="quantity__rules caption no-js-hidden">
                       {%- if quantity_rule.increment > 1 -%}
                         <span class="divider">
-                          {{- 'products.product.quantity.multiples_of' | t: quantity: quantity_rule.increment -}}
+                          {{-
+                            'products.product.quantity.multiples_of'
+                            | t: quantity: quantity_rule.increment
+                          -}}
                         </span>
                       {%- endif -%}
                       {%- if quantity_rule.min > 1 -%}
                         <span class="divider">
-                          {{- 'products.product.quantity.min_of' | t: quantity: quantity_rule.min -}}
+                          {{-
+                            'products.product.quantity.min_of'
+                            | t: quantity: quantity_rule.min
+                          -}}
                         </span>
                       {%- endif -%}
                       {%- if quantity_rule.max != null -%}
                         <span class="divider">
-                          {{- 'products.product.quantity.max_of' | t: quantity: quantity_rule.max -}}
+                          {{-
+                            'products.product.quantity.max_of'
+                            | t: quantity: quantity_rule.max
+                          -}}
                         </span>
                       {%- endif -%}
                     </div>
@@ -259,11 +274,16 @@
                   >
                     {{- 'icon-close.svg' | inline_asset_content -}}
                   </button>
-                  {%- if card_product.selected_or_first_available_variant.quantity_price_breaks.size > 0 -%}
+                  {%- if card_product.selected_or_first_available_variant.quantity_price_breaks.size
+                      > 0
+                  -%}
                     <volume-pricing class="parent-display">
                       <ul class="list-unstyled">
                         <li>
-                          <span>{{ card_product.selected_or_first_available_variant.quantity_rule.min }}+</span>
+                          <span>
+                            {{- card_product.selected_or_first_available_variant.quantity_rule.min -}}
+                            +</span
+                          >
                           {%- assign price = card_product.selected_or_first_available_variant.price
                             | money_with_currency
                           -%}
@@ -333,7 +353,10 @@
                   >
                     {{- 'icon-close.svg' | inline_asset_content -}}
                   </button>
-                  <div id="QuickAddInfo-{{ card_product.id }}" class="quick-add-modal__content-info"></div>
+                  <div
+                    id="QuickAddInfo-{{ card_product.id }}"
+                    class="quick-add-modal__content-info"
+                  ></div>
                 </div>
               </quick-add-modal>
             {%- else -%}
@@ -412,7 +435,10 @@
                   </span>
                 </button>
               {% else %}
-                {% render 'quantity-input', variant: card_product.selected_or_first_available_variant, min: 0 %}
+                {% render 'quantity-input',
+                  variant: card_product.selected_or_first_available_variant,
+                  min: 0
+                %}
               {% endif %}
             </quick-add-bulk>
           {% else %}
@@ -512,10 +538,16 @@
                         <a href="{{ card_product.url }}" class="full-unstyled-link">
                           <h3>{{ card_product.title | escape }}</h3>
                         </a>
-                        {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+                        {% render 'price',
+                          product: card_product,
+                          price_class: '',
+                          show_compare_at_price: true
+                        %}
                         {%- if card_product.quantity_price_breaks_configured? -%}
                           <div class="card__information-volume-pricing-note">
-                            <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
+                            <span class="caption">
+                              {{- 'products.product.volume_pricing.note' | t -}}
+                            </span>
                           </div>
                         {%- endif -%}
                       </div>
@@ -527,10 +559,16 @@
                             {{ card_product.title | escape }}
                           </h3>
                         </a>
-                        {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+                        {% render 'price',
+                          product: card_product,
+                          price_class: '',
+                          show_compare_at_price: true
+                        %}
                         {%- if card_product.quantity_price_breaks_configured? -%}
                           <div class="card__information-volume-pricing-note">
-                            <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
+                            <span class="caption">
+                              {{- 'products.product.volume_pricing.note' | t -}}
+                            </span>
                           </div>
                         {%- endif -%}
                       </div>
@@ -556,7 +594,9 @@
             >
               {{- 'products.product.sold_out' | t -}}
             </span>
-          {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+          {%- elsif card_product.compare_at_price > card_product.price
+            and card_product.available
+          -%}
             <span
               id="Badge-{{ section_id }}-{{ card_product.id }}"
               class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
@@ -613,7 +653,9 @@
           <div class="card-information">
             {%- if show_vendor -%}
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
-              <div class="caption-with-letter-spacing light">{{ 'products.product.vendor' | t }}</div>
+              <div class="caption-with-letter-spacing light">
+                {{ 'products.product.vendor' | t }}
+              </div>
             {%- endif -%}
             {% render 'price', placeholder: placeholder, show_compare_at_price: true %}
           </div>
